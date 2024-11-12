@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "c5107ad6-52ce-4176-9dc2-3eb7b9fba792",
+		"name": "Hospital Management - SB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22928894"
+	},
+	"item": [
+		{
+			"name": "Public - Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"mblack\",\r\n    \"password\":\"pass789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/api/public/login",
+					"path": [
+						"api",
+						"public",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Public - Get Hospital Info",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/public/hospital/info",
+					"path": [
+						"api",
+						"public",
+						"hospital",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Public - Get Doctors Info",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/public/doctors/list",
+					"path": [
+						"api",
+						"public",
+						"doctors",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patient - Get Patient Info",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{PATIENT_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/api/auth/patient/records",
+					"path": [
+						"api",
+						"auth",
+						"patient",
+						"records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patient - Book An Appointment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{PATIENT_JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"NP\",\r\n    \"age\": 25,\r\n    \"address\": \"NP - Palakkad\",\r\n    \"diagnosis\": null,\r\n    \"appointmentDate\": \"2024-10-11\",\r\n    \"treatingDoctor\": {\r\n        \"doctorId\": 1,\r\n        \"name\": \"Dr. Emily Green\",\r\n        \"specialization\": \"Cardiology\",\r\n        \"department\": {\r\n            \"departmentId\": 1,\r\n            \"departmentName\": \"Cardiology\",\r\n            \"description\": \"Heart and Blood Vessel Treatment\"\r\n        },\r\n        \"yearsOfExperience\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/api/auth/patient/appointment",
+					"path": [
+						"api",
+						"auth",
+						"patient",
+						"appointment"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Doctor - Get Individual Patient Record",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{DOCTOR_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/api/auth/doctor/patient/records/4",
+					"path": [
+						"api",
+						"auth",
+						"doctor",
+						"patient",
+						"records",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Doctor - Update Diagnosis",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{DOCTOR_JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patientId\": 4,\r\n    \"name\": \"NP\",\r\n    \"age\": 25,\r\n    \"address\": \"NP - Palakkad\",\r\n    \"diagnosis\": \"Mild Fever - Updated\",\r\n    \"appointmentDate\": \"2024-10-11\",\r\n    \"doctorId\": {\r\n        \"doctorId\": 1,\r\n        \"name\": \"Dr. Emily Green\",\r\n        \"specialization\": \"Cardiology\",\r\n        \"department\": {\r\n            \"departmentId\": 1,\r\n            \"departmentName\": \"Cardiology\",\r\n            \"description\": \"Heart and Blood Vessel Treatment\"\r\n        },\r\n        \"yearsOfExperience\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/api/auth/doctor/update/diagnosis",
+					"path": [
+						"api",
+						"auth",
+						"doctor",
+						"update",
+						"diagnosis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Add Department",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departmentName\":\"Ortho\",\r\n    \"description\":\"Deals with Joint-Pain\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/api/auth/admin/department/add",
+					"path": [
+						"api",
+						"auth",
+						"admin",
+						"department",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Add Doctor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"NPV\",\r\n    \"specialization\": \"General Medicine\",\r\n    \"department\": {\r\n        \"departmentId\": 4,\r\n        \"departmentName\": \"Ortho\",\r\n        \"description\": \"Deals with Joint-Pain\"\r\n    },\r\n    \"yearsOfExperience\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/api/auth/admin/doctor/add",
+					"path": [
+						"api",
+						"auth",
+						"admin",
+						"doctor",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.url.protocol=\"http\"\r",
+					"pm.request.url.host=\"localhost\"\r",
+					"pm.request.url.port=\"8080\""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PATIENT_JWT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "DOCTOR_JWT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ADMIN_JWT",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
