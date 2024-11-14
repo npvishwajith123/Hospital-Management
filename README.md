@@ -8,8 +8,6 @@ The problem statement for the below application can be found in this pdf file. T
 
 [Hospital Management Web Application - Problem Statement PDF](extradocs/HospitalManagementProblemStatement.pdf)
 
-The test class contains the Junit Tests for testing the endpoints in the controller classes.
-
 Also attached the postman suite with all the endpoints configured along with test data.
 
 [Hospital Management Web Application - Postman Suite](extradocs/HospitalManagementPostman.json)
